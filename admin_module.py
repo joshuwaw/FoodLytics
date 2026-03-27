@@ -2,15 +2,12 @@ import streamlit as st
 import qrcode
 from io import BytesIO
 
-# Change this to your actual Streamlit URL once you deploy
-PRODUCTION_URL = "https://foodlytics-ff5zenhikjdcqmqspxy52u.streamlit.app/"
+# Streamlit will read from secrets if available, otherwise default to production URL
+PRODUCTION_URL = "https://foodlytics-ff5zenhikjdcqmqspxy52u.streamlit.app"
 
 def get_base_url():
-    """Detects if the app is running locally or in production."""
-    # Check if we are running on local host ports
-    if st.config.get_option("server.address") == "localhost" or st.config.get_option("server.port") == 8501:
-        return "http://localhost:8501"
-    return PRODUCTION_URL
+    """Detects if the app is running locally or in production via secrets.toml."""
+    return st.secrets.get("BASE_URL", PRODUCTION_URL)
 
 def show_admin_page(supabase):
     st.sidebar.title("FoodLytics Admin")
