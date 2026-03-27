@@ -4,8 +4,8 @@ from customer_module import show_customer_portal
 from admin_module import show_admin_page
 
 # --- CONFIGURATION ---
-SUPABASE_URL = "https://iejnygjsanwddariukrq.supabase.co"
-SUPABASE_KEY = "sb_publishable_7ies1_1JDaH1c88iYC-13w_Vtk2nzqs"
+SUPABASE_URL = st.secrets["SUPABASE_URL"]
+SUPABASE_KEY = st.secrets["SUPABASE_KEY"]
 
 # Initialize Supabase Client
 @st.cache_resource
